@@ -48,17 +48,28 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        findViewById<Button>(R.id.btnLogout).setOnClickListener {
+            goToLogoutActivity()
+        }
         findViewById<Button>(R.id.btnTakePicture).setOnClickListener {
             // launch camera to let the user take picture
             onLaunchCamera()
-
-
         }
 
         queryPosts()
 
 
     }
+
+    fun goToLogoutActivity(){
+        ParseUser.logOut()
+
+        val intent = Intent(this@MainActivity, LoginActivity::class.java)
+
+        startActivity(intent)
+
+    }
+
     // send object to our parse server
     fun submitPost(description: String, user: ParseUser, file:File){
         // Create the post object
